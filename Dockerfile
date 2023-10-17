@@ -11,7 +11,10 @@ RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o 
 RUN apt update && \
     apt -y upgrade && \
     apt install -y ros-galactic-ros-base && \
-    apt install -y ros-dev-tools
+    apt install -y ros-dev-tools &&\
+    apt -y autoremove &&\
+    apt -y autoclean && \
+    rm -rf /var/lib/apt/lists/* /var/log/dpkg.log
 
 COPY ./entrypoint.sh /
 # setup environment
